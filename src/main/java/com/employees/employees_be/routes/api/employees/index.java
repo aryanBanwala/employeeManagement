@@ -35,7 +35,7 @@ public class index {
     }
 
     // Endpoint to update an existing employee's credentials
-    @PutMapping("/update")
+    @PutMapping("/updateProfile")
     public Map<String, Object> updateEmployee(HttpServletRequest req, @RequestBody Map<String, Object> body) {
         return updateHandler.handle(body);
     }

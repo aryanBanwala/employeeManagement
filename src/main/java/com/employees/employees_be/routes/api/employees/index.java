@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("/api/employees")
 public class index {
@@ -27,6 +28,12 @@ public class index {
 
     @Autowired
     private GetNthLevelManagerHandler getNthLevelManagerHandler;
+    
+    @Autowired
+    private GetTopLevelHandler getTopLevelHandler;
+
+    @Autowired
+    private EditTopLevelEmployeeProfileHandler editTopLevelEmployeeProfileHandler;
 
     // Endpoint to create a new employee
     @PostMapping("/create")
@@ -64,4 +71,16 @@ public class index {
     ) {
         return getNthLevelManagerHandler.handle(e_id, n);
     }
+
+    @GetMapping("/getTopLevelEmployee")
+    public Map<String, Object> getTopLevelEmployee() {
+        return getTopLevelHandler.handle();
+    }
+
+    // Endpoint to edit the top-level employee profile
+    @PutMapping("/editTopLevelProfile")
+    public Map<String, Object> editTopLevelEmployeeProfile(@RequestBody Map<String, Object> body) {
+        return editTopLevelEmployeeProfileHandler.handle(body);
+    }
+
 }

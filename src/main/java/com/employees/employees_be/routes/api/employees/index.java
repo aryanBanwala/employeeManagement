@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-
 @RestController
 @RequestMapping("/api/employees")
 public class index {
@@ -72,6 +71,7 @@ public class index {
         return getNthLevelManagerHandler.handle(e_id, n);
     }
 
+    // Endpoint to get the top-level employee profile
     @GetMapping("/getTopLevelEmployee")
     public Map<String, Object> getTopLevelEmployee() {
         return getTopLevelHandler.handle();

@@ -27,6 +27,15 @@ public class index {
 
     @Autowired
     private GetNthLevelManagerHandler getNthLevelManagerHandler;
+    
+    @Autowired
+    private GetTopLevelHandler getTopLevelHandler;
+
+    @Autowired
+    private EditTopLevelEmployeeProfileHandler editTopLevelEmployeeProfileHandler;
+
+    @Autowired
+    private getHierarchyTree getHierarchyTreeHandler;
 
     // Endpoint to create a new employee
     @PostMapping("/create")
@@ -35,7 +44,7 @@ public class index {
     }
 
     // Endpoint to update an existing employee's credentials
-    @PutMapping("/update")
+    @PutMapping("/updateProfile")
     public Map<String, Object> updateEmployee(HttpServletRequest req, @RequestBody Map<String, Object> body) {
         return updateHandler.handle(body);
     }
@@ -64,4 +73,22 @@ public class index {
     ) {
         return getNthLevelManagerHandler.handle(e_id, n);
     }
+
+    // Endpoint to get the top-level employee profile
+    @GetMapping("/getTopLevelEmployee")
+    public Map<String, Object> getTopLevelEmployee() {
+        return getTopLevelHandler.handle();
+    }
+
+    // Endpoint to edit the top-level employee profile
+    @PutMapping("/editTopLevelProfile")
+    public Map<String, Object> editTopLevelEmployeeProfile(@RequestBody Map<String, Object> body) {
+        return editTopLevelEmployeeProfileHandler.handle(body);
+    }
+
+    @GetMapping("/getHierarchyTree")
+    public Map<String, Object> getHierarchyTree() {
+        return getHierarchyTreeHandler.handle();
+    }
+
 }

@@ -34,6 +34,9 @@ public class index {
     @Autowired
     private EditTopLevelEmployeeProfileHandler editTopLevelEmployeeProfileHandler;
 
+    @Autowired
+    private getHierarchyTree getHierarchyTreeHandler;
+
     // Endpoint to create a new employee
     @PostMapping("/create")
     public Map<String, Object> createEmployee(HttpServletRequest req, @RequestBody Map<String, Object> body) {
@@ -81,6 +84,11 @@ public class index {
     @PutMapping("/editTopLevelProfile")
     public Map<String, Object> editTopLevelEmployeeProfile(@RequestBody Map<String, Object> body) {
         return editTopLevelEmployeeProfileHandler.handle(body);
+    }
+
+    @GetMapping("/getHierarchyTree")
+    public Map<String, Object> getHierarchyTree() {
+        return getHierarchyTreeHandler.handle();
     }
 
 }

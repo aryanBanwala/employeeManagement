@@ -75,6 +75,11 @@ public class EmployeesCollection {
         ).getModifiedCount();
     }
 
+    // ✅ Find employees who report to a specific manager
+    public List<Document> findByReportsTo(String managerId) {
+        return collection.find(Filters.eq("reportsTo", managerId)).into(new ArrayList<>());
+    }
+
     // Fetch all employees without any filter
     public List<Document> getAll() {
         return collection.find(new Document()).into(new ArrayList<>());

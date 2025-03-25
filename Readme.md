@@ -49,8 +49,6 @@ Run the following query in your MongoDB shell:
   "phoneNumber": "1234567890",
   "email": "ceo@example.com",
   "reportsTo": "-1",
-  "createdAt": ISODate("2024-03-26T00:00:00Z"),
-  "updatedAt": ISODate("2024-03-26T00:00:00Z")
 }
 ```
 
@@ -110,3 +108,5 @@ Otherwise, the request will be rejected with `403 Forbidden`.
 This project is for **internal use only**. No external licensing applies.
 
 👨‍💻 **Thank you for using this project!** If you have any questions or suggestions, feel free to contribute or reach out. 🚀
+
+---

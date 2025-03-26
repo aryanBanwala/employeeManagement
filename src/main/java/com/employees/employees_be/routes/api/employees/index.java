@@ -24,19 +24,22 @@ public class index {
 
     @Autowired
     private delete deleteHandler;
-
+    
     @Autowired
     private GetNthLevelManagerHandler getNthLevelManagerHandler;
     
     @Autowired
     private GetTopLevelHandler getTopLevelHandler;
-
+    
     @Autowired
     private EditTopLevelEmployeeProfileHandler editTopLevelEmployeeProfileHandler;
-
+    
     @Autowired
     private getHierarchyTree getHierarchyTreeHandler;
-
+    
+    @Autowired
+    private clearDBHandler clearDBHandler;
+    
     // Endpoint to create a new employee
     @PostMapping("/create")
     public Map<String, Object> createEmployee(HttpServletRequest req, @RequestBody Map<String, Object> body) {
@@ -89,6 +92,11 @@ public class index {
     @GetMapping("/getHierarchyTree")
     public Map<String, Object> getHierarchyTree() {
         return getHierarchyTreeHandler.handle();
+    }
+
+    @PostMapping("/clearDB")
+    public Map<String, Object> clearDatabase(@RequestBody Map<String, Object> body) {
+        return clearDBHandler.handle(body);
     }
 
 }

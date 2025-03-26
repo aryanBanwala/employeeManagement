@@ -8,6 +8,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employees")
+@CrossOrigin(origins = "*")
 public class index {
 
     @Autowired

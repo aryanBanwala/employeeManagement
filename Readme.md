@@ -90,6 +90,7 @@ Otherwise, the request will be rejected with `403 Forbidden`.
 | 🟢 `GET` | `/api/employees/getTopLevelEmployee` | Get the top-level employee |
 | 🟡 `PUT` | `/api/employees/editTopLevelProfile` | Edit the top-level employee profile |
 | 🟢 `GET` | `/api/employees/getHierarchyTree` | Get the full hierarchy tree |
+| 🟢 `POST` | `/api/employees/clearDB` | Clears the entire DB |
 
 ---
 

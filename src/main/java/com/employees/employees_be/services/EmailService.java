@@ -25,7 +25,7 @@ public class EmailService {
 
             mailSender.send(message);
             logger.info("Email sent successfully to {}", to);
-            return "Email Sent Successfully! Check Your Spam Folder";
+            return String.format("Email Sent Successfully to %s! Check Your Spam Folder", to);
         } catch (Exception e) {
             logger.error("Failed to send email to {}: {}", to, e.getMessage(), e);
             return "Failed to send email!";

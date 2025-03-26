@@ -4,6 +4,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
+import com.mongodb.client.model.Collation;
+import com.mongodb.client.model.CollationStrength;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,14 +62,20 @@ public class EmployeesCollection {
     }
 
     public List<Document> getEmployees(Document query, int skip, int limit, Document sort) {
-        return collection.find(query)
-                         .sort(sort)
-                         .skip(skip)
-                         .limit(limit)
-                         .into(new ArrayList<>());
-     }
+        Collation collation = Collation.builder()
+                .locale("en") 
+                .collationStrength(CollationStrength.PRIMARY) // Use collationStrength() instead of strength()
+                .build();
 
-     // Reassign all subordinates to a new manager
+        return collection.find(query)
+                .sort(sort)
+                .collation(collation) 
+                .skip(skip)
+                .limit(limit)
+                .into(new ArrayList<>());
+    }
+
+    // Reassign all subordinates to a new manager
     public long reassignSubordinates(String oldManagerId, String newManagerId) {
         return collection.updateMany(
             Filters.eq("reportsTo", oldManagerId),
@@ -97,7 +105,10 @@ public class EmployeesCollection {
         return doc != null;
     }
 
-
+    public long clearDatabase() {
+        return collection.deleteMany(new Document()).getDeletedCount();
+    }
+    
     // ✅ Find by e_id
     public Optional<Document> findById(String id) {
         Document doc = collection.find(Filters.eq("e_id", id)).first();

@@ -34,6 +34,9 @@ public class EmployeesCollection {
         return uuid;
     }
     
+    public long countEmployees(Document query) {
+        return collection.countDocuments(query);
+    }
     
     //check for employee exists or not
     public boolean doesEidExist(String eId) {

@@ -22,7 +22,10 @@ public class getEmployees {
         
         List<Document> employees = retrieveEmployees(params);
         
-        return buildResponse(params, employees);
+        // Get actual total count of employees (ignoring query filters)
+        long total = employeesCollection.countEmployees(new Document());
+        
+        return buildResponse(params, employees, total);
 
     }
 
@@ -97,7 +100,7 @@ public class getEmployees {
     }
 
     // Middleware 3: Build and return the final response map with metadata and data
-    private Map<String, Object> buildResponse(Map<String, Object> params, List<Document> employees) {
+    private Map<String, Object> buildResponse(Map<String, Object> params, List<Document> employees , long total) {
         Map<String, Object> response = new HashMap<>();
 
         response.put("status", "success");
@@ -105,6 +108,7 @@ public class getEmployees {
         response.put("limit", params.get("limit"));
         response.put("sortBy", params.get("sortBy"));
         response.put("order", params.get("order"));
+        response.put("total", total); 
         response.put("data", employees);
 
         return response;
